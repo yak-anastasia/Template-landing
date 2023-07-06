@@ -1,0 +1,12 @@
+{% extends 'butler/base.html' %} 
+
+{% block content %}
+
+{% include 'butler/header.html' %}
+
+<div class="container" style="min-height: 500px;">
+    {% block container %}
+    {% endblock container %}
+</div>
+{% include 'butler/footer.html' %}
+{% endblock %}

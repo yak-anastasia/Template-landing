@@ -1,0 +1,20 @@
+# Virtualenv
+env/
+venv/
+# VSCode
+.vscode
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Other
+*.sqlite3
+#djanog
+core/config.py
+staticfiles/
+!staticfiles/.gitkeep
+butler/migrations/
+!butler/migrations/.gitkeep
+!butler/migrations/__init__.py

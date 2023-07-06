@@ -1,0 +1,71 @@
+{% extends 'butler/index.html' %}
+{% load static %}
+{% block container %}
+
+<div class="row">
+    <div class="col-12 col-md-3"></div>
+    <div class="col-12 col-md-6 my-5" style=" min-height: 500px;">
+        <h2 class="w-100 text-center">ЗАКАЖИТЕ ОНЛАЙН</h2>
+        <h5 class="w-100 text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias ab nemo nisi harum. Laboriosam pariatur facilis accusamus, suscipit assumenda odio.</h5>
+        <form method="post" style="font-family: Forum;" class="row g-2">
+            {% csrf_token %}
+           
+            <div class="col-md-6">
+                {{ form.name }}
+            </div>
+            <div class="col-md-6">
+                {{ form.surname }}
+            </div>
+            <div class="col-md-12">
+                <label for="exampleInputEmail1" class="form-label">Выберите услугу/услуги</label>
+                {{ form.service }}
+            </div>
+            <div class="col-md-6">
+                <label for="exampleInputEmail1" class="form-label">Желаемая дата оказания услуг</label>
+                {{ form.datetime }}
+            </div>
+            <div class="col-md-6">
+                <label for="exampleInputEmail1" class="form-label">Номер телефона</label>
+                {{ form.phone }}
+            </div>
+            <div class="col-md-6">
+                {{ form.comment }}
+            </div>
+            <div class="col-md-6">
+                {{ form.captcha}}
+            </div>
+            {% if form.errors %}
+            <div class="alert alert-danger mt-3 w-100"  role="alert">
+                <ul>
+                    {% if form.captcha.errors %}
+                        <li>Неверный ответ на CAPTCHA</li>
+                    {% endif %}
+                    {% if form.service.errors %}
+                        <li>Выберите хотя бы одну услугу</li>
+                    {% endif %}
+                    {% if form.phone.errors %}
+                        <li>Номер должен быть в формате: +79876543210</li>
+                    {% endif %}
+                </ul>
+                
+            </div>
+            {% endif %}
+            <div class="col-md-12">
+                <button class="btn btn-light mt-3 w-100" id="btnsend" type="submit" style="color: #060936;
+                margin: 0px;
+                box-shadow: 1px 1px 2px gray;">Отправить</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-12 col-md-3"></div>
+    <script>
+        //Скрипт для отображения капчи после заполнения всех полей
+        var captchaImage = document.getElementsByClassName('captcha')[0]
+        var captcha = document.getElementById('id_captcha_1')
+        captchaImage.style.height = "80px";
+        captchaImage.style.marginBottom = "20px";
+        captcha.className += " form-control";
+        captcha.placeholder = "Ответ на капчу";
+    </script>
+</div>
+{% endblock %}

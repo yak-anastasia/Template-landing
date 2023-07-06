@@ -1,0 +1,34 @@
+{% extends 'butler/index.html' %}
+{% load static %} 
+{% block container %}
+
+<div class="row" style="min-height: 500px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-7" style=" overflow-wrap: break-word;">
+                <div style="position:relative;overflow:hidden; border-radius: 15px;  box-shadow: 1px 1px 5px gray; margin: 30px 10px 40px 10px;">
+                    <iframe src="#" 
+                    width="100%" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+                </div>
+            </div>
+            <div class="col-12 col-md-5" style="overflow-wrap: break-word;">
+                <div style="margin: 30px 10px 40px 10px;">
+                    <h2>КОНТАКТЫ:</h2>
+                    
+                    <h6>&nbsp;</h6>
+                    <h5>Адреса:</h5>
+                    <span style="font-size:18px; font-weight: bold;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae voluptatibus sunt nesciunt corporis fugit rem.</span>
+                    
+                    <h2>&nbsp;</h2>
+                    <h5>Телефон:</h5>
+                    <span style="font-size:18px; font-weight: bold;">телефон</span>
+                    
+                    <h2>&nbsp;</h2>
+                    <h5>E-mail:</h5>
+                    <span style="font-size:18px; font-weight: bold;"><a href="mailto: " style="text-decoration: none; color: black;">email</a></span>
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

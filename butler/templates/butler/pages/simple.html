@@ -1,0 +1,15 @@
+{% extends 'butler/index.html' %}
+{% load static %} 
+{% block container %}
+
+<div class="row" style="min-height: 500px;">
+    
+    <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xxl-3 order-1 order-md-0">
+        {% include 'butler/menu.html' %}
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-7 col-lg-8 col-xxl-9 order-0 order-md-1" style="overflow-wrap: break-word;">
+        {{ mainpage.content|safe }}
+    </div>
+</div>
+{% endblock %}

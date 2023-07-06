@@ -1,0 +1,7 @@
+{% load static %} 
+<a href="{% url 'order' %}">
+    <div style="float: right; width: 120px; height: auto; transform: rotate(5deg); cursor: pointer;">
+        <span style="position:relative; right: -30px; top: 75px; color: white; font-size: 18px; font-family: Lobster; ">Заказать</span>
+        <img src="{% static 'butler/img/orderimg.png' %}"  alt="">
+    </div>
+</a>

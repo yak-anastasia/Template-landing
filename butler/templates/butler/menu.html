@@ -1,0 +1,93 @@
+<style>
+    .menu-a li a {
+        font-family: Forum;
+        text-decoration: none;
+        color: black;
+        font-size: 18px;
+    }
+
+    .menu-a li a:hover {
+        text-shadow: 0.5px 0.5px black;
+    }
+</style>
+<div class="container">
+    <hr>
+    <h2 style="font-family: Forum; ">УСЛУГИ</h2>
+    <hr>
+    <ul class="menu-a" style="
+    list-style: none;
+    margin-left: -30px;
+    line-height: 25px;">
+    {% for item in menu %}
+    {% comment %} {% url item.slug %} {% endcomment %}
+        <li><a href="#"><h5>{{ item.title }}</h5></a></li>
+    {% endfor %}
+    </ul>
+    <hr>
+    <h2 style="font-family: Forum; ">ОТЗЫВЫ О НАС</h2>
+    <hr>
+    <figure class="text-end">
+        <blockquote class="blockquote">
+            <p style="
+                text-align: left;
+                font-family: Forum; 
+                font-size: 15px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. A quis non autem eveniet consectetur quibusdam.</p>
+        </blockquote>
+        <figcaption class="blockquote-footer" style="font-family: Forum; font-size: 14px;">
+            Автор
+        </figcaption>
+    </figure>
+
+    <figure class="text-end">
+        <blockquote class="blockquote">
+            <p style="
+                font-family: Forum; 
+                text-align: left;
+                font-size: 15px;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi doloremque, atque aliquam dignissimos aperiam hic.</p>
+        </blockquote>
+        <figcaption class="blockquote-footer" style="font-family: Forum; font-size: 14px;">
+            Автор
+        </figcaption>
+    </figure>
+    <hr>
+    <form method="post" style="font-family: Forum;" class="row g-2">
+        {% csrf_token %}
+        {{ form.name }}
+        {{ form.email }}
+        {{ form.message }}
+        {{ form.captcha}}
+        {% if form.captcha.errors %}
+            <div class="alert alert-danger" role="alert">
+                Неверный ответ на CAPTCHA
+            </div>  
+        {% endif %}
+        <button class="btn btn-light my-1" id="btnsend" type="submit" 
+        style="color: #060936;
+        box-shadow: 1px 1px 2px gray;">Отправить</button>
+    </form>
+   <script>
+    //Скрипт для отображения капчи после заполнения всех полей
+    var captchaImage = document.getElementsByClassName('captcha')[0]
+    var captcha = document.getElementById('id_captcha_1')
+    var name = document.getElementById('sendemailname')
+    var email = document.getElementById('sendemailemail')
+    var message = document.getElementById('sendemailmessage')
+    var btnsend = document.getElementById('btnsend')
+    function checkFields(){
+        if(name.value != "" && email.value != "" && message.value != ""){
+            captcha.style.display = "initial"
+            captchaImage.style.display = "initial"
+        }else{
+            captcha.style.display = "none"
+            captchaImage.style.display = "none"
+        }
+    }
+    checkFields()
+    btnsend.addEventListener("mouseenter", (event) => {
+        checkFields()
+    });
+    captcha.className += " form-control";
+    captcha.placeholder = "Ответ на капчу";
+   </script>
+
+</div>

@@ -1,0 +1,79 @@
+{% extends 'butler/index.html' %} {% load static %} {% block container %}
+<style>
+  .accordion-button:not(.collapsed) {
+    color: #000000;
+    background-color: #ffffff;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.125);
+  }
+  .accordion-button:focus {
+    z-index: 3;
+    border-color: #ffffff;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem transparent;
+  }
+</style>
+<div class="row" style="min-height: 500px">
+  <div class="container-fluid">
+    <div class="row mt-5">
+      <h2>ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ</h2>
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        {% for item in faq %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{item.id}}" aria-expanded="false" aria-controls="flush-collapse{{item.id}}">
+                <h5>{{ item.question }}</h5>
+              </button>
+            </h2>
+            <div id="flush-collapse{{item.id}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{item.id}}" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body" style="font-size: 18px">
+                {{ item.answer }}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row">
+      <hr />
+      <h2>ЗАДАТЬ СВОЙ ВОПРОС</h2>
+    </div>
+    <form method="post" style="font-family: Forum" class="row g-2">
+      {% csrf_token %}
+      <div class="row">
+        {% if form.captcha.errors %}
+        <div
+          class="alert alert-danger mt-3 w-100"
+          role="alert"
+        >
+        Неверный ответ на CAPTCHA
+        </div>
+        {% endif %}
+        <div class="col-12 col-md-6 row g-2">
+          {{ form.name }} {{ form.email }} {{ form.message }}
+        </div>
+        <div class="col-12 col-md-6 mt-3">
+          <span class="my-3">{{ form.captcha}} </span>
+
+          <button
+            class="btn btn-light mt-3 w-100"
+            id="btnsend"
+            type="submit"
+            style="color: #060936; margin: 0px; box-shadow: 1px 1px 2px gray"
+          >
+            Отправить
+          </button>
+        </div>
+      </div>
+    </form>
+    <script>
+      //Скрипт для отображения капчи после заполнения всех полей
+      var captchaImage = document.getElementsByClassName("captcha")[0];
+      var captcha = document.getElementById("id_captcha_1");
+      captchaImage.style.height = "80px";
+      captchaImage.style.marginBottom = "20px";
+      captcha.className += " form-control";
+      captcha.placeholder = "Ответ на капчу";
+    </script>
+  </div>
+</div>
+{% endblock %}
